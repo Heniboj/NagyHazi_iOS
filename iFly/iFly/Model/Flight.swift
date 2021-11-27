@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Flight {
+struct Flight: Identifiable {
     var id: String
     var startingAirport: String
     var destinationAirport: String
