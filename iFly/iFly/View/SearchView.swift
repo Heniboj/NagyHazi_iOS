@@ -6,18 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SearchView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @ObservedObject var searchHandler:SearchHandler = SearchHandler()
-    
     @State private var isActive = false
-    
-    
-    var flightss: [Flight] = [
-        Flight(id: "BUD1", startingAirport: "Budapest", destinationAirport: "London Luton", departureDate: Calendar.current.date(from: DateComponents(year: 2021, month: 11, day: 29, hour: 8, minute: 00))! , arriveDate: Calendar.current.date(from: DateComponents(year: 2021, month: 11, day: 29, hour: 8, minute: 00))!),
-        Flight(id: "BUD2", startingAirport: "Budapest", destinationAirport: "London Luton", departureDate: Calendar.current.date(from: DateComponents(year: 2021, month: 11, day: 29, hour: 8, minute: 00))! , arriveDate: Calendar.current.date(from: DateComponents(year: 2021, month: 11, day: 29, hour: 8, minute: 00))!),
-        Flight(id: "LON1", startingAirport: "London Luton", destinationAirport: "Budapest", departureDate: Calendar.current.date(from: DateComponents(year: 2021, month: 11, day: 29, hour: 8, minute: 00))! , arriveDate: Calendar.current.date(from: DateComponents(year: 2021, month: 11, day: 29, hour: 8, minute: 00))!)
-        ]
     
     var body: some View {
         VStack {

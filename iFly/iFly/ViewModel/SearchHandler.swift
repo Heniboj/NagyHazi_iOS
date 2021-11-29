@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class SearchHandler: ObservableObject {
     @Published var leavingText:String = ""
@@ -16,6 +17,17 @@ class SearchHandler: ObservableObject {
     
     @Published var foundFlights:[Flight] = []
     @Published var query:SearchQuery = SearchQuery("", "", Date(), Date())
+    
+    private var flights:[Flight]
+    
+    init() {
+        let fetchRequest: NSFetchRequest<Flight>
+        fetchRequest = Flight.fetchRequest()
+
+        let context = PersistentContainer.persistentContainer.viewContext
+
+        flights = try! context.fetch(fetchRequest)
+    }
     
     func search() {
         foundFlights = []
@@ -29,11 +41,12 @@ class SearchHandler: ObservableObject {
     
     func compareFlight(flight:Flight) -> Bool {
         if(flight.startingAirport == self.leavingText && flight.destinationAirport == self.goingText) {
-            if(flight.departureDate > self.departureDate) {
+            if(flight.departureDate! > self.departureDate) {
                 return true
             }
         }
         return false
     }
+    
 }
 

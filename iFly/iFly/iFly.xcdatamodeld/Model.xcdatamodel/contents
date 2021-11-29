@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Airport" representedClassName="Airport" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="flights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flight" inverseName="airport" inverseEntity="Flight"/>
+    </entity>
+    <entity name="BoardingCard" representedClassName="BoardingCard" syncable="YES" codeGenerationType="class">
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <relationship name="flight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flight" inverseName="boardingcards" inverseEntity="Flight"/>
+    </entity>
+    <entity name="Flight" representedClassName="Flight" syncable="YES" codeGenerationType="class">
+        <attribute name="arriveDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="departureDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="destinationAirport" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="startingAirport" optional="YES" attributeType="String"/>
+        <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Airport" inverseName="flights" inverseEntity="Airport"/>
+        <relationship name="boardingcards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BoardingCard" inverseName="flight" inverseEntity="BoardingCard"/>
+    </entity>
+    <elements>
+        <element name="Airport" positionX="133.0092163085938" positionY="-76.5401611328125" width="128" height="74"/>
+        <element name="BoardingCard" positionX="302.3634033203125" positionY="168.8798217773438" width="128" height="103"/>
+        <element name="Flight" positionX="-159.1917114257812" positionY="65.70062255859375" width="128" height="134"/>
+    </elements>
+</model>
