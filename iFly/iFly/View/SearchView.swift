@@ -10,6 +10,7 @@ import CoreData
 
 struct SearchView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Binding var rootIsActive: Bool
     
     @ObservedObject var searchHandler:SearchHandler = SearchHandler()
     @State private var isActive = false
@@ -40,25 +41,22 @@ struct SearchView: View {
                 Text("Search Flights")
                 
             }
-            NavigationLink(destination: SearchResultView(foundFlights: searchHandler.foundFlights, query: searchHandler.query), isActive: $isActive) {
+            NavigationLink(destination: SearchResultView(rootIsActive: self.$rootIsActive, foundFlights: searchHandler.foundFlights, query: searchHandler.query), isActive: $isActive) {
                 
-            }
+            }.isDetailLink(false)
             
             Spacer()
-        }.background(Color.purple).navigationTitle("Search").navigationBarTitleDisplayMode(.inline)
+        }.background(Color.purple)//.navigationTitle("Search").navigationBarTitleDisplayMode(.inline)
         
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SearchView()
-                .previewDevice("iPhone 13")
-            .previewInterfaceOrientation(.portrait)
-            SearchView()
-                .previewDevice("iPhone 11")
-                .previewInterfaceOrientation(.portrait)
-        }
-    }
-}
+//struct SearchView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            SearchView(rootIsActive: self.$rootIsActive)
+//                .previewDevice("iPhone 13")
+//            .previewInterfaceOrientation(.portrait)
+//        }
+//    }
+//}

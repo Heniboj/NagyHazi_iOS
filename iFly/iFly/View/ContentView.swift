@@ -10,12 +10,24 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-
+    @State var isActive: Bool = false
+    
     var body: some View {
         NavigationView {
-            NavigationLink(destination: SearchView().environment(\.managedObjectContext, managedObjectContext)) {
-                Text("Search")
-            }.navigationTitle("Main menu").navigationBarTitleDisplayMode(.inline)
+            VStack {
+                NavigationLink(destination: SearchView(rootIsActive: self.$isActive).environment(\.managedObjectContext, managedObjectContext), isActive: self.$isActive) {
+                    Text("Search")
+                }.navigationBarTitleDisplayMode(.inline)
+                    .toolbar(content: {
+                         ToolbarItem(placement: .principal, content: {
+                         Text("Main Menu")
+                         })})//.navigationTitle("Main Menu")
+
+                NavigationLink(destination: BoardingCardView()) {
+                    Text("Boarding cards")
+                }
+            }
+
         }
 
     }
