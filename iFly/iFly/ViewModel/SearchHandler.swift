@@ -40,7 +40,7 @@ class SearchHandler: ObservableObject {
     }
     
     func compareFlight(flight:Flight) -> Bool {
-        if(flight.startingAirport == self.leavingText && flight.destinationAirport == self.goingText) {
+        if(flight.startingAirport!.name == self.leavingText && flight.destinationAirport!.name == self.goingText) {
             if(flight.departureDate! > self.departureDate) {
                 return true
             }

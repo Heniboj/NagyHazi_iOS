@@ -23,7 +23,7 @@ struct BookingView: View {
             TextField("First Name", text: $bookingHandler.firstName)
             TextField("Last Name", text: $bookingHandler.lastName)
             
-            Button (action: { bookingHandler.finishBooking(); self.rootIsActive = false } ){
+            Button (action: { bookingHandler.finishBooking(flightID: flightID); self.rootIsActive = false } ){
                 Text("Confirm")
             }
             
