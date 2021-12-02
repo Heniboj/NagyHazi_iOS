@@ -12,7 +12,7 @@ struct SearchView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Binding var rootIsActive: Bool
     
-    @ObservedObject var searchHandler:SearchHandler = SearchHandler()
+    @ObservedObject var searchHandler:SearchHandler// = SearchHandler()
     @State private var isActive = false
     
     var body: some View {
@@ -20,7 +20,6 @@ struct SearchView: View {
             VStack {
                 TextField("Leaving from", text:$searchHandler.leavingText).textFieldStyle(.roundedBorder).font(Font.system(size: 25, design: .default))
                 TextField("Going to", text:$searchHandler.goingText).textFieldStyle(.roundedBorder).font(Font.system(size: 25, design: .default))
-                
                 VStack {
                     HStack {
                         Text("Departure").frame(maxWidth: .infinity, alignment: .leading).padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0))
@@ -47,6 +46,9 @@ struct SearchView: View {
             
             Spacer()
         }.background(Color.purple)//.navigationTitle("Search").navigationBarTitleDisplayMode(.inline)
+        
+        
+        
         
     }
 }
