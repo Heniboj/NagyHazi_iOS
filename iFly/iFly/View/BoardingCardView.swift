@@ -49,8 +49,8 @@ struct BoardingCardView: View {
                             Text(dateFormatter.string(from: bc.flight!.arriveDate!))
                         }
                     }
-                }.tabViewStyle(.page).indexViewStyle(.page(backgroundDisplayMode: .always))
-            }
+                }
+            }.tabViewStyle(.page).indexViewStyle(.page(backgroundDisplayMode: .always))
         }
     }
 }

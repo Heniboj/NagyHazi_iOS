@@ -20,7 +20,7 @@ class BookingHandler: ObservableObject {
     func finishBooking(flightID: String) {
         let newBoardingCard = BoardingCard(context: context)
 
-        newBoardingCard.id = "ASD1"
+        newBoardingCard.id = "ASD1"+firstName
         newBoardingCard.firstName = firstName
         newBoardingCard.lastName = lastName
         

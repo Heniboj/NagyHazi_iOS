@@ -75,7 +75,7 @@ struct ContentView: View {
 //              } catch {
 //                print("Error saving managed object context: \(error)")
 //              }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
 
     }
     
