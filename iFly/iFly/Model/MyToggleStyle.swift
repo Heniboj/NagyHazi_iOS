@@ -15,7 +15,7 @@ struct MyToggleStyle: ToggleStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack {
-            configuration.label // The text (or view) portion of the Toggle
+            configuration.label
             Spacer()
             RoundedRectangle(cornerRadius: 16, style: .circular)
                 .fill(configuration.isOn ? onColor : offColor)

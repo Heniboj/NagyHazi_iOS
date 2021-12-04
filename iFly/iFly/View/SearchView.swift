@@ -12,7 +12,7 @@ struct SearchView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Binding var rootIsActive: Bool
     
-    @ObservedObject var searchHandler:SearchHandler// = SearchHandler()
+    @ObservedObject var searchHandler:SearchHandler
     @State private var isActive = false
     
     @State private var isOneWay = false
@@ -38,14 +38,7 @@ struct SearchView: View {
                     }.padding(EdgeInsets(top: -20, leading: 0, bottom: 0, trailing: 0))
                     
                     HStack {
-                        Toggle("One way", isOn: $isOneWay).toggleStyle(MyToggleStyle()).padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 10))//.onChange(of: isOneWay) { newValue in
-                            //if newValue {
-                           //     datepadding = 100
-                           // } else {
-                          //      datepadding = 12
-                            //}
-                            
-                        //}
+                        Toggle("One way", isOn: $isOneWay).toggleStyle(MyToggleStyle()).padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 10))
                     }
                 }.padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
             
@@ -53,19 +46,16 @@ struct SearchView: View {
             
             
 
-            Button(action: {searchHandler.search(); isActive = true}) {
+            Button(action: {isActive = true}) {
                 Text("Search Flights")
                 
             }
-            NavigationLink(destination: SearchResultView(rootIsActive: self.$rootIsActive, foundFlights: searchHandler.foundFlights, query: searchHandler.query), isActive: $isActive) {
+            NavigationLink(destination: SearchResultView(rootIsActive: self.$rootIsActive, searchHandler:searchHandler, isOneWay:isOneWay), isActive: $isActive) {
                 
             }.isDetailLink(false)
             
             Spacer()
         }.background(Color.purple)//.navigationTitle("Search").navigationBarTitleDisplayMode(.inline)
-        
-        
-        
         
     }
 }

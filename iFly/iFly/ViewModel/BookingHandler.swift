@@ -11,7 +11,6 @@ import CoreData
 class BookingHandler: ObservableObject {
     @Published var firstName:String = ""
     @Published var lastName:String = ""
-    //private let flightID
     
     // TODO: seat
     

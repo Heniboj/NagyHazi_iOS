@@ -10,24 +10,27 @@ import SwiftUI
 struct SearchResultView: View {
     @Binding var rootIsActive: Bool
     
-    let foundFlights:[Flight]
-    let query:SearchQuery
+    var searchHandler:SearchHandler
+    let isOneWay:Bool
     
     var body: some View {
-        List(foundFlights) { flight in
+        List(searchHandler.search(isReturn: false)) { flight in
             VStack {
-                NavigationLink(destination: BookingView(flightID: flight.id!, rootIsActive: self.$rootIsActive)) {
+                NavigationLink(destination: getDestination(flight: flight)) {
                     Text(flight.id!)
                     Text(dateformatter.string(from:flight.departureDate!))
-
-
                 }
             }
-            
         }
-            
-
     }
+    
+    func getDestination(flight: Flight) -> AnyView {
+            if isOneWay {
+                return AnyView(BookingView(flightID1: flight.id!, rootIsActive: self.$rootIsActive))
+            } else {
+                return AnyView(ReturnFlightResultView(rootIsActive: self.$rootIsActive, flightID: flight.id!, searchHandler: searchHandler))
+            }
+        }
 }
 
 //struct SearchResultView_Previews: PreviewProvider {

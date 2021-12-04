@@ -16,9 +16,8 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var departureDate:Date = Date()
     @Published var returnDate:Date = Date().addingTimeInterval(86400)
     
-    @Published var foundFlights:[Flight] = []
-    @Published var query:SearchQuery = SearchQuery("", "", Date(), Date())
-    
+    //@Published var foundFlights:[Flight] = []
+    //@Published var query:SearchQuery = SearchQuery("", "", Date(), Date())
     
     var locationViewModel = LocationViewModel()
     
@@ -34,24 +33,34 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
         flights = try! context.fetch(fetchRequest)
     }
     
-    func search() {
-        foundFlights = []
-        query = SearchQuery(leavingText, goingText, departureDate, returnDate)
+    func search(isReturn:Bool) -> [Flight] {
+        var foundFlights:[Flight] = []
+        //query = SearchQuery(leavingText, goingText, departureDate, returnDate)
         for flight in flights {
-            if(compareFlight(flight:flight)) {
+            if(compareFlight(flight:flight, isReturn:isReturn)) {
                 foundFlights.append(flight)
             }
         }
+        return foundFlights
     }
     
-    func compareFlight(flight:Flight) -> Bool {
-        if(flight.startingAirport!.name == self.leavingText && flight.destinationAirport!.name == self.goingText) {
-            if(flight.departureDate! > self.departureDate) {
-                return true
+    func compareFlight(flight:Flight, isReturn:Bool) -> Bool {
+        if isReturn {
+            if(flight.startingAirport!.name == self.goingText && flight.destinationAirport!.name == self.leavingText) {
+                if(flight.departureDate! > self.returnDate) {
+                    return true
+                }
+            }
+        } else {
+            if(flight.startingAirport!.name == self.leavingText && flight.destinationAirport!.name == self.goingText) {
+                if(flight.departureDate! > self.departureDate) {
+                    return true
+                }
             }
         }
         return false
     }
+        
     
     func searchClosestAirport(latitude:Double, longitude:Double) -> String {
         // fetch airports

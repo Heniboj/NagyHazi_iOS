@@ -69,6 +69,14 @@ struct ContentView: View {
 //            newFlight.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 8, minute: 00))!
 //            newFlight.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 12, minute: 00))!
 //
+//            let newFlight2 = Flight(context: context)
+//
+//            newFlight2.id = "BUD3"
+//            newFlight2.startingAirport = nur
+//            newFlight2.destinationAirport = bud
+//            newFlight2.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 8, minute: 00))!
+//            newFlight2.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 12, minute: 00))!
+//
 //
 //            do {
 //                try context.save()
@@ -79,56 +87,6 @@ struct ContentView: View {
 
     }
     
-}
-
-struct RequestLocationView: View {
-    @EnvironmentObject var locationViewModel: LocationViewModel
-    
-    var body: some View {
-        VStack {
-            Image(systemName: "location.circle")
-                .resizable()
-                .frame(width: 100, height: 100, alignment: .center)
-                .foregroundColor(.blue
-                )
-            Button(action: {
-                locationViewModel.requestPermission()
-            }, label: {
-                Label("Allow tracking", systemImage: "location")
-            })
-            .padding(10)
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            Text("We need your permission to track you.")
-                .foregroundColor(.gray)
-                .font(.caption)
-        }
-    }
-}
-
-struct ErrorView: View {
-    var errorText: String
-    
-    var body: some View {
-        VStack {
-            Image(systemName: "xmark.octagon")
-                    .resizable()
-                .frame(width: 100, height: 100, alignment: .center)
-            Text(errorText)
-        }
-        .padding()
-        .foregroundColor(.white)
-        .background(Color.red)
-    }
-}
-
-struct TrackingView: View {
-    @EnvironmentObject var locationViewModel: LocationViewModel
-    
-    var body: some View {
-        Text("Thanks!")
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
