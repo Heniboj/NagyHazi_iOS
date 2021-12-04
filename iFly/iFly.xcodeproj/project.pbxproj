@@ -16,6 +16,7 @@
 		25E2A7592751C86400928356 /* SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A7582751C86400928356 /* SearchQuery.swift */; };
 		25E2A75E2751DEF100928356 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A75D2751DEF100928356 /* BookingView.swift */; };
 		25E2A7882751E70C00928356 /* iFly.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25E2A7862751E70C00928356 /* iFly.xcdatamodeld */; };
+		25E59EA7275A8245008A08BB /* MyToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E59EA6275A8245008A08BB /* MyToggleStyle.swift */; };
 		25E5F9B527558FF800B625EA /* BookingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E5F9B427558FF800B625EA /* BookingHandler.swift */; };
 		25E5F9B72755B8DC00B625EA /* BoardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E5F9B62755B8DC00B625EA /* BoardingCardView.swift */; };
 		25EC4A12274C6E380047159B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EC4A11274C6E380047159B /* SearchResultView.swift */; };
@@ -36,6 +37,7 @@
 		25E2A7582751C86400928356 /* SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQuery.swift; sourceTree = "<group>"; };
 		25E2A75D2751DEF100928356 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		25E2A7872751E70C00928356 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		25E59EA6275A8245008A08BB /* MyToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToggleStyle.swift; sourceTree = "<group>"; };
 		25E5F9B427558FF800B625EA /* BookingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHandler.swift; sourceTree = "<group>"; };
 		25E5F9B62755B8DC00B625EA /* BoardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardingCardView.swift; sourceTree = "<group>"; };
 		25EC4A11274C6E380047159B /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				25E2A7582751C86400928356 /* SearchQuery.swift */,
 				25F695D4275261F600D3272D /* PresistentContainer.swift */,
+				25E59EA6275A8245008A08BB /* MyToggleStyle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				25F695D5275261F600D3272D /* PresistentContainer.swift in Sources */,
 				25E2A7592751C86400928356 /* SearchQuery.swift in Sources */,
 				25EC4A12274C6E380047159B /* SearchResultView.swift in Sources */,
+				25E59EA7275A8245008A08BB /* MyToggleStyle.swift in Sources */,
 				25E2A75E2751DEF100928356 /* BookingView.swift in Sources */,
 				25EC92EB273B334C00FAB663 /* SearchView.swift in Sources */,
 				25E2A7882751E70C00928356 /* iFly.xcdatamodeld in Sources */,
