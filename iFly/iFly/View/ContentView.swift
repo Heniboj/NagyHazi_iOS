@@ -15,36 +15,91 @@ struct ContentView: View {
     @ObservedObject var searchHandler:SearchHandler = SearchHandler()
     var locationViewModel = LocationViewModel()
     
+    @FetchRequest(
+        entity: BoardingCard.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \BoardingCard.flight?.departureDate, ascending: true)]
+    ) var boardingcards: FetchedResults<BoardingCard>
+    private let dateFormatter = DateFormatter()
+    
     init() {
         // get location permissions
         if locationViewModel.authorizationStatus == .notDetermined {
             locationViewModel.requestPermission()
         }
+        
+        dateFormatter.dateFormat = "EEE d MMM, hh:mm"
     }
 
     
     var body: some View {
-        NavigationView {
-            VStack {
-                NavigationLink(destination: SearchView(rootIsActive: self.$isActive, searchHandler:searchHandler).environment(\.managedObjectContext, managedObjectContext), isActive: self.$isActive) {
-                    Text("Search")
-                }.navigationBarTitleDisplayMode(.inline)
-                    .toolbar(content: {
-                         ToolbarItem(placement: .principal, content: {
-                         Text("Main Menu")
-                         })}).simultaneousGesture(TapGesture().onEnded{
-                             searchHandler.updateLocation()                         })//.navigationTitle("Main Menu")
-
-                NavigationLink(destination: BoardingCardView()) {
-                    Text("Boarding cards")
+            NavigationView {
+                ZStack {
+                    Image("menu_background")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .edgesIgnoringSafeArea(.all)
+                    
+                VStack {
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.white)
+                            .padding([.leading, .trailing], 20)
+                            .frame(width: UIScreen.main.bounds.width, height: 100)
+                        
+                        if boardingcards.count == 0 {
+                            Text("You have no upcoming flights.")
+                                .font(Font.body.bold())
+                        }
+                        else {
+                            VStack {
+                                HStack {
+                                    Image(systemName: "airplane.departure")
+                                        .foregroundColor(Color.gray)
+                                    Text(dateFormatter.string(from: boardingcards[0].flight!.departureDate!))
+                                }
+                                .font(.system(size: 20))
+                                HStack {
+                                    Text(boardingcards[0].flight!.startingAirport!.name!)
+                                    Image(systemName: "arrow.right")
+                                        .foregroundColor(Color.black)
+                                    Text(boardingcards[0].flight!.destinationAirport!.name!)
+                                }
+                                .font(.system(size: 20, weight: .bold))
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: SearchView(rootIsActive: self.$isActive, searchHandler:searchHandler).environment(\.managedObjectContext, managedObjectContext), isActive: self.$isActive) {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }.navigationBarTitleDisplayMode(.inline)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
+                    .clipShape(Capsule())
+                        .toolbar(content: {
+                             ToolbarItem(placement: .principal, content: {
+                             Text("Main Menu")
+                             })}).simultaneousGesture(TapGesture().onEnded{
+                                 searchHandler.updateLocation()                         })//.navigationTitle("Main Menu")
+                    
+                    
+                    NavigationLink(destination: BoardingCardView()) {
+                        Label("Boarding cards", systemImage: "wallet.pass.fill")
+                    }
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(Color.white)
+                        .clipShape(Capsule())
+                
+                    Spacer()
                 }
             
-                
-                
-
-                
-            }
-
+                    
         }.onAppear {
 //            let context = PersistentContainer.persistentContainer.viewContext
 //            let bud = Airport(context: context)
@@ -84,6 +139,7 @@ struct ContentView: View {
 //                print("Error saving managed object context: \(error)")
 //              }
         }.navigationViewStyle(StackNavigationViewStyle())
+        }
 
     }
     
