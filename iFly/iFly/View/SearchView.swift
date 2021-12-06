@@ -86,7 +86,7 @@ struct SearchView: View {
                         
                     
                 
-                }.padding(EdgeInsets(top: 50, leading: 50, bottom: 0, trailing: 50)).preferredColorScheme(.light)
+                }.padding(EdgeInsets(top: 50, leading: 50, bottom: 0, trailing: 50))
                 
                 Button(action: {isActive = true}) {
                     Label("Search Flights", systemImage: "magnifyingglass")

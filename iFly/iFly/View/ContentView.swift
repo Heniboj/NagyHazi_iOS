@@ -28,6 +28,9 @@ struct ContentView: View {
         }
         
         dateFormatter.dateFormat = "EEE d MMM, hh:mm"
+        
+        // hardcodeolt repülőjáratok
+        //setupFlights()
     }
 
     
@@ -100,49 +103,57 @@ struct ContentView: View {
                 }
             
                     
-        }.onAppear {
-//            let context = PersistentContainer.persistentContainer.viewContext
-//            let bud = Airport(context: context)
-//            bud.code = "BUD"
-//            bud.name = "Budapest"
-//            bud.lat = 47.43699722
-//            bud.lon = 19.25716667
-//            let nur = Airport(context: context)
-//            nur.code = "LTN"
-//            nur.name = "London Luton"
-//            nur.lat = 51.87149722
-//            nur.lon = 0.36766389
-//
-//
-//
-//
-//            let newFlight = Flight(context: context)
-//
-//            newFlight.id = "BUD2"
-//            newFlight.startingAirport = bud
-//            newFlight.destinationAirport = nur
-//            newFlight.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 8, minute: 00))!
-//            newFlight.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 12, minute: 00))!
-//
-//            let newFlight2 = Flight(context: context)
-//
-//            newFlight2.id = "BUD3"
-//            newFlight2.startingAirport = nur
-//            newFlight2.destinationAirport = bud
-//            newFlight2.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 8, minute: 00))!
-//            newFlight2.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 12, minute: 00))!
-//
-//
-//            do {
-//                try context.save()
-//              } catch {
-//                print("Error saving managed object context: \(error)")
-//              }
         }.navigationViewStyle(StackNavigationViewStyle())
+                
         }
 
     }
     
+    func setupFlights() {
+        let context = PersistentContainer.persistentContainer.viewContext
+        let bud = Airport(context: context)
+        bud.code = "BUD"
+        bud.name = "Budapest"
+        bud.lat = 47.43699722
+        bud.lon = 19.25716667
+        let lhr = Airport(context: context)
+        lhr.code = "LHR"
+        lhr.name = "London"
+        lhr.lat = 51.87149722
+        lhr.lon = 0.36766389
+        let pao = Airport(context: context)
+        pao.code = "PAO"
+        pao.name = "Palo Alto"
+        pao.lat = 37.46111111
+        pao.lon = 122.11500000
+
+        let newFlight = Flight(context: context)
+        newFlight.id = "BUD1"
+        newFlight.startingAirport = bud
+        newFlight.destinationAirport = lhr
+        newFlight.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 8, minute: 00))!
+        newFlight.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 12, minute: 00))!
+
+        let newFlight2 = Flight(context: context)
+        newFlight2.id = "LHR1"
+        newFlight2.startingAirport = lhr
+        newFlight2.destinationAirport = bud
+        newFlight2.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 18, minute: 00))!
+        newFlight2.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 21, minute: 00))!
+        
+        let newFlight3 = Flight(context: context)
+        newFlight3.id = "LHR2"
+        newFlight3.startingAirport = lhr
+        newFlight3.destinationAirport = pao
+        newFlight3.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 10, minute: 00))!
+        newFlight3.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 22, minute: 00))!
+
+        do {
+            try context.save()
+          } catch {
+            print("Error saving managed object context: \(error)")
+          }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		250BB11D275796A100AC9C06 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250BB11C275796A100AC9C06 /* CloudKit.framework */; };
+		2521EDD9275D7C9800D48C0D /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2521EDD8275D7C9800D48C0D /* Country.swift */; };
+		2521EDDB275D832D00D48C0D /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2521EDDA275D832D00D48C0D /* Gender.swift */; };
+		2521EDDD275D894500D48C0D /* DottedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2521EDDC275D894500D48C0D /* DottedLine.swift */; };
 		25B8490E2739CDE7003A6F42 /* iFlyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B8490D2739CDE7003A6F42 /* iFlyApp.swift */; };
 		25B849102739CDE7003A6F42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B8490F2739CDE7003A6F42 /* ContentView.swift */; };
 		25B849122739CDE9003A6F42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25B849112739CDE9003A6F42 /* Assets.xcassets */; };
@@ -29,6 +32,9 @@
 /* Begin PBXFileReference section */
 		250BB11A2757915D00AC9C06 /* iFly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFly.entitlements; sourceTree = "<group>"; };
 		250BB11C275796A100AC9C06 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		2521EDD8275D7C9800D48C0D /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		2521EDDA275D832D00D48C0D /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		2521EDDC275D894500D48C0D /* DottedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DottedLine.swift; sourceTree = "<group>"; };
 		25B8490A2739CDE7003A6F42 /* iFly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25B8490D2739CDE7003A6F42 /* iFlyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iFlyApp.swift; sourceTree = "<group>"; };
 		25B8490F2739CDE7003A6F42 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,6 +133,8 @@
 				25E2A7582751C86400928356 /* SearchQuery.swift */,
 				25F695D4275261F600D3272D /* PresistentContainer.swift */,
 				25E59EA6275A8245008A08BB /* MyToggleStyle.swift */,
+				2521EDD8275D7C9800D48C0D /* Country.swift */,
+				2521EDDA275D832D00D48C0D /* Gender.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 				25E2A7542751C56E00928356 /* SearchHandler.swift */,
 				25E5F9B427558FF800B625EA /* BookingHandler.swift */,
 				25F9D21A27570DB900495758 /* LocationViewModel.swift */,
+				2521EDDC275D894500D48C0D /* DottedLine.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,7 +232,10 @@
 				25F9D21B27570DB900495758 /* LocationViewModel.swift in Sources */,
 				25E5F9B72755B8DC00B625EA /* BoardingCardView.swift in Sources */,
 				25E5F9B527558FF800B625EA /* BookingHandler.swift in Sources */,
+				2521EDDD275D894500D48C0D /* DottedLine.swift in Sources */,
+				2521EDDB275D832D00D48C0D /* Gender.swift in Sources */,
 				25B8490E2739CDE7003A6F42 /* iFlyApp.swift in Sources */,
+				2521EDD9275D7C9800D48C0D /* Country.swift in Sources */,
 				25FB60EF275BC1880034215C /* ReturnFlightResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +381,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,6 +418,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
