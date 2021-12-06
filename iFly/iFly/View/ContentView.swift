@@ -19,6 +19,8 @@ struct ContentView: View {
         entity: BoardingCard.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \BoardingCard.flight?.departureDate, ascending: true)]
     ) var boardingcards: FetchedResults<BoardingCard>
+    
+    
     private let dateFormatter = DateFormatter()
     
     init() {
@@ -29,7 +31,7 @@ struct ContentView: View {
         
         dateFormatter.dateFormat = "EEE d MMM, hh:mm"
         
-        // hardcodeolt repülőjáratok
+        // hardcoded flights
         //setupFlights()
     }
 
@@ -50,7 +52,7 @@ struct ContentView: View {
                             .padding([.leading, .trailing], 20)
                             .frame(width: UIScreen.main.bounds.width, height: 100)
                         
-                        if boardingcards.count == 0 {
+                        if boardingcards.count == 0 || boardingcards[0].flight == nil {
                             Text("You have no upcoming flights.")
                                 .font(Font.body.bold())
                         }
@@ -133,23 +135,31 @@ struct ContentView: View {
         newFlight.destinationAirport = lhr
         newFlight.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 8, minute: 00))!
         newFlight.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 12, minute: 00))!
-
-        let newFlight2 = Flight(context: context)
-        newFlight2.id = "LHR1"
-        newFlight2.startingAirport = lhr
-        newFlight2.destinationAirport = bud
-        newFlight2.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 18, minute: 00))!
-        newFlight2.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 21, minute: 00))!
         
+        let newFlight2 = Flight(context: context)
+        newFlight2.id = "BUD2"
+        newFlight2.startingAirport = bud
+        newFlight2.destinationAirport = lhr
+        newFlight2.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 10, minute: 00))!
+        newFlight2.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 13, minute: 00))!
+
         let newFlight3 = Flight(context: context)
-        newFlight3.id = "LHR2"
+        newFlight3.id = "LHR1"
         newFlight3.startingAirport = lhr
-        newFlight3.destinationAirport = pao
-        newFlight3.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 10, minute: 00))!
-        newFlight3.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 22, minute: 00))!
+        newFlight3.destinationAirport = bud
+        newFlight3.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 18, minute: 00))!
+        newFlight3.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 21, minute: 00))!
+        
+        let newFlight4 = Flight(context: context)
+        newFlight4.id = "LHR2"
+        newFlight4.startingAirport = lhr
+        newFlight4.destinationAirport = pao
+        newFlight4.departureDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 10, minute: 00))!
+        newFlight4.arriveDate = Calendar.current.date(from: DateComponents(year: 2021, month: 12, day: 13, hour: 22, minute: 00))!
 
         do {
             try context.save()
+            print("SAVED")
           } catch {
             print("Error saving managed object context: \(error)")
           }

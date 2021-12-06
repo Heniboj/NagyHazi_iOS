@@ -13,8 +13,8 @@ class PersistentContainer {
         return persistentContainer.viewContext
     }
     
-    public static var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "iFly")
+    public static var persistentContainer: NSPersistentCloudKitContainer = {
+        let container = NSPersistentCloudKitContainer(name: "iFly")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

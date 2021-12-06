@@ -29,6 +29,9 @@ struct SearchView: View {
                     Group {
                         TextField("Leaving from", text:$searchHandler.leavingText)
                         TextField("Going to", text:$searchHandler.goingText)
+                            .onAppear {
+                                searchHandler.goingText = ""
+                            }
                     }
                     .textFieldStyle(.roundedBorder)
                     .font(Font.system(size: 25, design: .default))

@@ -16,9 +16,6 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var departureDate:Date = Date()
     @Published var returnDate:Date = Date().addingTimeInterval(86400)
     
-    //@Published var foundFlights:[Flight] = []
-    //@Published var query:SearchQuery = SearchQuery("", "", Date(), Date())
-    
     var locationViewModel = LocationViewModel()
     
     private var flights:[Flight] = []
@@ -27,6 +24,7 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
         super.init()
         let fetchRequest: NSFetchRequest<Flight>
         fetchRequest = Flight.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Flight.departureDate, ascending: true)]
 
         let context = PersistentContainer.persistentContainer.viewContext
 
@@ -35,7 +33,6 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func search(isReturn:Bool) -> [Flight] {
         var foundFlights:[Flight] = []
-        //query = SearchQuery(leavingText, goingText, departureDate, returnDate)
         for flight in flights {
             if(compareFlight(flight:flight, isReturn:isReturn)) {
                 foundFlights.append(flight)
@@ -61,7 +58,6 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
         return false
     }
         
-    
     func searchClosestAirport(latitude:Double, longitude:Double) -> String {
         // fetch airports
         let fetchRequest: NSFetchRequest<Airport>

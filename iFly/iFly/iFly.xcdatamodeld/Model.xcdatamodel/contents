@@ -5,7 +5,7 @@
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="arrivingflights" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flight" inverseName="destinationAirport" inverseEntity="Flight"/>
+        <relationship name="arrivingflights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flight" inverseName="destinationAirport" inverseEntity="Flight"/>
         <relationship name="departingflights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flight" inverseName="startingAirport" inverseEntity="Flight"/>
     </entity>
     <entity name="BoardingCard" representedClassName="BoardingCard" syncable="YES" codeGenerationType="class">
