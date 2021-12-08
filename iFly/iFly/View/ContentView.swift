@@ -23,6 +23,9 @@ struct ContentView: View {
     
     private let dateFormatter = DateFormatter()
     
+    @State var isActiveBoardingCardView: Bool = false
+    @State var showAlert: Bool = false
+    
     init() {
         // get location permissions
         if locationViewModel.authorizationStatus == .notDetermined {
@@ -93,13 +96,28 @@ struct ContentView: View {
                                  searchHandler.updateLocation()                         })//.navigationTitle("Main Menu")
                     
                     
-                    NavigationLink(destination: BoardingCardView()) {
+                    Button(action: {
+                        if boardingcards.count != 0 {
+                            isActiveBoardingCardView = true
+                        } else {
+                            showAlert = true
+                        }
+                            })
+                    {
                         Label("Boarding cards", systemImage: "wallet.pass.fill")
                     }
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(Color.white)
                         .clipShape(Capsule())
+                        .alert("You have no Boarding Cards.", isPresented: $showAlert) {
+                                    Button("OK", role: .cancel) { }
+                         }
+                    
+                    NavigationLink(destination: BoardingCardView(), isActive: $isActiveBoardingCardView) {
+                        
+                    }
+                        
                 
                     Spacer()
                 }
