@@ -13,6 +13,10 @@ var dateformatter = DateFormatter()
 @main
 struct iFlyApp: App {
     
+    init() {
+        dateformatter.dateFormat = "YY/MM/dd hh:mm"
+    }
+    
     let managedObjectContext = PersistentContainer.persistentContainer.viewContext
     
     var body: some Scene {
