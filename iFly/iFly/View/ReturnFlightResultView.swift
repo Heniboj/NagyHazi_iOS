@@ -37,9 +37,3 @@ struct ReturnFlightResultView: View {
     
 
 }
-
-//struct ReturnFlightResultView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ReturnFlightResultView()
-//    }
-//}

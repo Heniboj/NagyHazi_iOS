@@ -111,15 +111,3 @@ struct SearchView: View {
         
     }
 }
-
-
-
-//struct SearchView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            SearchView(rootIsActive: self.$rootIsActive)
-//                .previewDevice("iPhone 13")
-//            .previewInterfaceOrientation(.portrait)
-//        }
-//    }
-//}

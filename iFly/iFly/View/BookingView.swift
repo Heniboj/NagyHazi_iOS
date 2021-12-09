@@ -142,9 +142,3 @@ struct BookingView: View {
         
     }
 }
-
-//struct BookingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BookingView(flightID1: "BUD1")
-//    }
-//}

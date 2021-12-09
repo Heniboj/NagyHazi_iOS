@@ -44,9 +44,3 @@ struct SearchResultView: View {
             }
         }
 }
-
-//struct SearchResultView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchResultView(foundFlights: [], query: SearchQuery("", "", Date(), Date()), rootIsActive: false)
-//    }
-//}

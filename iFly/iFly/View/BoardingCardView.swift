@@ -223,9 +223,3 @@ struct DataView: View {
         .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
     }
 }
-
-//struct BoardingCardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BoardingCardView()
-//    }
-//}
