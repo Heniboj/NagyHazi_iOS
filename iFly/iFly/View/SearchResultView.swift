@@ -9,9 +9,12 @@ import SwiftUI
 
 struct SearchResultView: View {
     @Binding var rootIsActive: Bool
+    @Binding var searchIsActive: Bool
     
     var searchHandler:SearchHandler
     let isOneWay:Bool
+    
+    @State var showAlert: Bool = false
     
     var body: some View {
         List(searchHandler.search(isReturn: false)) { flight in
@@ -34,6 +37,14 @@ struct SearchResultView: View {
                 }
             }
         }
+        .onAppear {
+            if searchHandler.getFoundFlightCount() == 0 {
+                showAlert = true
+            }
+        }
+        .alert("No flights found.", isPresented: $showAlert) {
+            Button("OK", role: .cancel) {self.searchIsActive = false }
+ }
     }
     
     func getDestination(flight: Flight) -> AnyView {

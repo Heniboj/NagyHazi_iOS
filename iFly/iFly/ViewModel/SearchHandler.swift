@@ -20,14 +20,20 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private var flights:[Flight] = []
     
+    private var foundFlights:[Flight] = []
+    
     override init() {
         super.init()
         
         updateFlights()
     }
     
+    func getFoundFlightCount() -> Int {
+        return foundFlights.count
+    }
+    
     func search(isReturn:Bool) -> [Flight] {
-        var foundFlights:[Flight] = []
+        foundFlights = []
         for flight in flights {
             if(compareFlight(flight:flight, isReturn:isReturn)) {
                 foundFlights.append(flight)

@@ -11,10 +11,9 @@ import CoreData
 struct SearchView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Binding var rootIsActive: Bool
+    @State var searchIsActive: Bool = false
     
     @ObservedObject var searchHandler:SearchHandler
-    @State private var isActive = false
-    
     @State private var isOneWay = false
     
     var body: some View {
@@ -85,7 +84,7 @@ struct SearchView: View {
             
             }.padding(EdgeInsets(top: 50, leading: 50, bottom: 0, trailing: 50))
             
-            Button(action: {isActive = true}) {
+            Button(action: {searchIsActive = true}) {
                 Label("Search Flights", systemImage: "magnifyingglass")
             }
             .padding()
@@ -94,7 +93,7 @@ struct SearchView: View {
             .clipShape(Capsule())
             
             
-            NavigationLink(destination: SearchResultView(rootIsActive: self.$rootIsActive, searchHandler:searchHandler, isOneWay:isOneWay), isActive: $isActive) {
+            NavigationLink(destination: SearchResultView(rootIsActive: self.$rootIsActive, searchIsActive: self.$searchIsActive, searchHandler: searchHandler, isOneWay: isOneWay), isActive: $searchIsActive) {
                 
             }.isDetailLink(false)
             
