@@ -12,15 +12,6 @@ var dateformatter = DateFormatter()
 
 @main
 struct iFlyApp: App {
-    init() {
-        dateformatter.dateFormat = "YY/MM/dd hh:mm"
-
-        @FetchRequest(
-          entity: Flight.entity(),
-          sortDescriptors: []
-        )
-        var flights: FetchedResults<Flight>
-    }
     
     let managedObjectContext = PersistentContainer.persistentContainer.viewContext
     

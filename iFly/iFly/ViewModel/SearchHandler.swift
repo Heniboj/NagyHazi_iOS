@@ -22,13 +22,8 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     override init() {
         super.init()
-        let fetchRequest: NSFetchRequest<Flight>
-        fetchRequest = Flight.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Flight.departureDate, ascending: true)]
-
-        let context = PersistentContainer.persistentContainer.viewContext
-
-        flights = try! context.fetch(fetchRequest)
+        
+        updateFlights()
     }
     
     func search(isReturn:Bool) -> [Flight] {
@@ -84,6 +79,8 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
         switch locationViewModel.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse, .authorized:
             if locationViewModel.latitude != nil && locationViewModel.longitude != nil {
+                print(locationViewModel.latitude!)
+                print(locationViewModel.longitude!)
                 self.leavingText = searchClosestAirport(latitude: locationViewModel.latitude!, longitude: locationViewModel.longitude!)
                 break
             }
@@ -95,7 +92,13 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func updateFlights() {
-        // TODO
+        let fetchRequest: NSFetchRequest<Flight>
+        fetchRequest = Flight.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Flight.departureDate, ascending: true)]
+
+        let context = PersistentContainer.persistentContainer.viewContext
+
+        flights = try! context.fetch(fetchRequest)
     }
 }
 
