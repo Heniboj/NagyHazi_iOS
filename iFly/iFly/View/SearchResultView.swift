@@ -17,8 +17,20 @@ struct SearchResultView: View {
         List(searchHandler.search(isReturn: false)) { flight in
             VStack {
                 NavigationLink(destination: getDestination(flight: flight)) {
-                    Text(flight.id!)
-                    Text(dateformatter.string(from:flight.departureDate!))
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Text(flight.id!)
+                            HStack {
+                                Text(flight.startingAirport!.code!)
+                                Image(systemName: "arrow.right")
+                                    .foregroundColor(Color.black)
+                                Text(flight.destinationAirport!.code!)
+                            }
+                            Text(dateformatter.string(from:flight.departureDate!))
+                        }
+                        Spacer()
+                    }
                 }
             }
         }

@@ -16,8 +16,20 @@ struct ReturnFlightResultView: View {
         List(searchHandler.search(isReturn: true)) { flight in
             VStack {
                 NavigationLink(destination: BookingView(flightID1: flightID, flightID2: flight.id!, rootIsActive: self.$rootIsActive)) {
-                    Text(flight.id!)
-                    Text(dateformatter.string(from:flight.departureDate!))
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Text(flight.id!)
+                            HStack {
+                                Text(flight.startingAirport!.code!)
+                                Image(systemName: "arrow.right")
+                                    .foregroundColor(Color.black)
+                                Text(flight.destinationAirport!.code!)
+                            }
+                            Text(dateformatter.string(from:flight.departureDate!))
+                        }
+                        Spacer()
+                    }
                 }
             }
         }

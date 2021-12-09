@@ -92,7 +92,10 @@ class SearchHandler: NSObject, ObservableObject, CLLocationManagerDelegate {
             default:
                 self.leavingText = ""
         }
+    }
     
+    func updateFlights() {
+        // TODO
     }
 }
 

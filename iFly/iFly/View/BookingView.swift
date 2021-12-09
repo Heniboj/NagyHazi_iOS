@@ -40,49 +40,77 @@ struct BookingView: View {
             .font(Font.system(size: 25, design: .default))
             
             Group {
-                HStack {
-                    Text("Birthdate:")
-                        .font(Font.system(size: 20))
-                    
-                    DatePicker("", selection: $bookingHandler.birthDate,displayedComponents: [.date])
-                        .labelsHidden()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Spacer()
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        .fill(Color.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                    HStack {
+                        Spacer()
+                        
+                        Text("Birthdate:")
+                            .font(Font.system(size: 20))
+                        
+                        DatePicker("", selection: $bookingHandler.birthDate,displayedComponents: [.date])
+                            .labelsHidden()
+                            .frame(alignment: .leading)
+                        
+                        Spacer()
+                    }.padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
                 }
             }
             
             
             Group {
-                HStack {
-                    Text("Gender:")
-                        .font(Font.system(size: 20))
-                    
-                    Picker("Gender", selection: $bookingHandler.gender) {
-                        Text("Male").tag(Gender.Male)
-                        Text("Female").tag(Gender.Female)
-                    }
-                    .pickerStyle(.menu)
-                    
-                    Spacer()
-                }
-            }
-            
-            
-            Group {
-                HStack {
-                    Text("Country:")
-                        .font(Font.system(size: 20))
-                    
-                    Picker("Country", selection: $bookingHandler.country) {
-                        ForEach(countries.sorted(by: { $0.name > $1.name })) {
-                            Text($0.name)
-                                .tag(Optional($0))
+                ZStack {
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                    HStack {
+                        Spacer()
+                        
+                        Text("Gender:")
+                            .font(Font.system(size: 20))
+                        
+                        Picker("Gender", selection: $bookingHandler.gender) {
+                            Text("Male").tag(Gender.Male)
+                            Text("Female").tag(Gender.Female)
                         }
-                    }
-                    .pickerStyle(.menu)
-                    
-                    Spacer()
+                        .pickerStyle(.menu)
+                        
+                        Spacer()
+                    }.padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
+                        .background()
+                }
+            }
+            
+            
+            Group {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        .fill(Color.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                    HStack {
+                        Spacer()
+                        
+                        Text("Country:")
+                            .font(Font.system(size: 20))
+                        
+                        Picker("Country", selection: $bookingHandler.country) {
+                            ForEach(countries.sorted(by: { $0.name > $1.name })) {
+                                Text($0.name)
+                                    .tag(Optional($0))
+                            }
+                        }
+                        .pickerStyle(.menu)
+                        
+                        Spacer()
+                    }.padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
                 }
             }
             
@@ -102,7 +130,16 @@ struct BookingView: View {
             
            
             Spacer()
-        }.padding(EdgeInsets(top: 30, leading: 30, bottom: 0, trailing: 30))
+        }
+        .padding(EdgeInsets(top: 30, leading: 30, bottom: 0, trailing: 30))
+        .background(
+            Image("bookingview_background")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
+        )
+        .ignoresSafeArea(.keyboard)
+        
     }
 }
 
